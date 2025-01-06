@@ -1,3 +1,4 @@
+// src/app/page.tsx
 'use client';
 
 import { useState } from 'react';
@@ -33,7 +34,7 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <main className="flex-1 overflow-hidden container py-4">
+      <main className="flex-1 overflow-hidden px-2">
         <MermaidEditor mode={mode} />
       </main>
     </div>
