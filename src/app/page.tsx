@@ -2,54 +2,39 @@
 
 import { useState } from 'react';
 import { MermaidEditor } from '@/components/MermaidEditor';
-import { AiOutlineCode, AiOutlineEdit } from 'react-icons/ai';
+import { Button } from "@/components/ui/button";
+import { CodeIcon, FileTextIcon } from "lucide-react";
 
 export default function Home() {
   const [mode, setMode] = useState<'visualize' | 'convert'>('visualize');
 
   return (
-    <div className="flex flex-col h-full bg-gray-50">
-      <nav className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-semibold text-gray-900">
-                Mermaid Visualizer
-              </h1>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="bg-gray-100 p-1 rounded-lg">
-                <button
-                  className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    mode === 'visualize'
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-500 hover:text-gray-900'
-                  }`}
-                  onClick={() => setMode('visualize')}
-                >
-                  <AiOutlineCode className="mr-2" />
-                  Visualize
-                </button>
-                <button
-                  className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    mode === 'convert'
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-500 hover:text-gray-900'
-                  }`}
-                  onClick={() => setMode('convert')}
-                >
-                  <AiOutlineEdit className="mr-2" />
-                  Convert
-                </button>
-              </div>
-            </div>
+    <div className="flex flex-col h-full bg-background">
+      <header className="border-b">
+        <div className="container flex h-14 items-center justify-between">
+          <h1 className="font-semibold">Mermaid Visualizer</h1>
+          <div className="flex gap-2">
+            <Button
+              variant={mode === 'visualize' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setMode('visualize')}
+            >
+              <CodeIcon className="mr-2 h-4 w-4" />
+              Visualize
+            </Button>
+            <Button
+              variant={mode === 'convert' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setMode('convert')}
+            >
+              <FileTextIcon className="mr-2 h-4 w-4" />
+              Convert
+            </Button>
           </div>
         </div>
-      </nav>
-      <main className="flex-1 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full py-6">
-          <MermaidEditor mode={mode} />
-        </div>
+      </header>
+      <main className="flex-1 overflow-hidden container py-4">
+        <MermaidEditor mode={mode} />
       </main>
     </div>
   );
